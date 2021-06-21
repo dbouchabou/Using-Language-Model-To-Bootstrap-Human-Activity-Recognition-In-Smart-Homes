@@ -56,8 +56,8 @@ Our model achieves the following performance on :
 ### [Three CASAS datasets](http://casas.wsu.edu/datasets/)
 
 |                    |     Aruba    |    Aruba   | Aruba | Aruba |     Milan    |    Milan   | Milan | Milan |     Cairo    |    Cairo   | Cairo | Cairo |
-|                    | No Embedding | Eembedding |  W2V  |  ELMo | No Embedding | Eembedding |  W2V  |  ELMo | No Embedding | Eembedding |  W2V  |  ELMo |
 |:------------------:|:------------:|:----------:|:-----:|:-----:|:------------:|:----------:|:-----:|:-----:|:------------:|:----------:|:-----:|:-----:|
+|                    | No Embedding | Eembedding |  W2V  |  ELMo | No Embedding | Eembedding |  W2V  |  ELMo | No Embedding | Eembedding |  W2V  |  ELMo |
 |      Accuracy      |     95.01    |    96.56   | 96.59 | 97.02 |     82.24    |    90.68   | 88.33 | 90.89 |     81.68    |    86.17   | 82.27 | 90.66 |
 |      Precision     |     94.69    |    96.16   | 96.23 | 96.63 |     82.28    |    90.03   | 88.28 | 90.82 |     80.22    |    85.41   | 82.04 | 90.84 |
 |       Recall       |     95.01    |    96.56   | 96.59 | 97.03 |     82.24    |    90.68   | 88.33 | 90.89 |     81.68    |    86.17   | 82.27 | 90.66 |
