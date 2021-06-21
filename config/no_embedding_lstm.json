@@ -1,0 +1,16 @@
+{
+    "name" : "results",
+    "encoding" : "basic_raw",
+    "segmentation" : "EW",
+    "model_type" : "LSTM",
+    "nb_units" : 64,
+    "emb_dim" : 64,
+    "batch_size" : 64,
+    "nb_epochs" : 400,
+    "verbose" : true,
+    "seed" : 7,
+    "nb_splits" : 3,
+    "sequence_lenght" : 2000,
+    "patience" : 20,
+    "Activity_renamed" : true
+}
