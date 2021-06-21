@@ -1,0 +1,17 @@
+{
+    "name" : "results",
+    "encoding" : "basic_raw",
+    "segmentation" : "EW",
+    "model_type" : "LSTM_ELMO_SUM",
+    "elmo_output" : "sum",
+    "emb_dim" : 64,
+    "nb_units" : 64,
+    "batch_size" : 64,
+    "nb_epochs" : 400,
+    "verbose" : true,
+    "seed" : 7,
+    "nb_splits" : 3,
+    "sequence_lenght" : 2000,
+    "pre_train_embedding" : "pretrain_embedding/ELMo/Cairo/demo_Dataset_Cairo_Encoding_basic_raw_WindowsSize_20_EmbeddingSize_64_NbEpochs_400/model_4_basic_raw_Cairo_20_64_no_backward",
+    "patience" : 20
+}

@@ -4,11 +4,12 @@
 import os
 import time
 import json
+import numpy as np
 
-from progress.bar import *
+from tqdm import tqdm
 
-from SmartHomeHARLib.tools import Experiment
-from SmartHomeHARLib.tools.datasets.casas import Encoder
+from SmartHomeHARLib.utils import Experiment
+from SmartHomeHARLib.datasets.casas import Encoder
 from SmartHomeHARLib.embedding import ELMoEventEmbedder
 
 
@@ -34,6 +35,12 @@ class ELMoExperiment(Experiment):
     def prepare_data_for_elmo(self):
 
         X = self.elmo_dataset_encoder.X
+        #print(X.shape)
+        #print(X)
+        
+        X = np.squeeze(X, axis=1)
+        
+        #print(X)
 
         sentence = " ".join(X)
 
@@ -42,15 +49,13 @@ class ELMoExperiment(Experiment):
 
     def prepare_dataset(self):
 
-        bar = IncrementalBar('Prepare Dataset', max = 2)
+        with tqdm(total=2, desc='Prepare Dataset') as pbar:
 
-        self.elmo_dataset_encoder.basic_raw()
-        bar.next()
+            self.elmo_dataset_encoder.basic_raw()
+            pbar.update(1)
 
-        self.prepare_data_for_elmo()
-        bar.next()
-
-        bar.finish()
+            self.prepare_data_for_elmo()
+            pbar.update(1)
 
 
     def start(self):
@@ -76,14 +81,11 @@ class ELMoExperiment(Experiment):
 
         self.prepare_dataset()
 
-        self.elmo_model = ELMoEventEmbedder(sentences = self.w2v_data_train,
+        self.elmo_model = ELMoEventEmbedder(sentences = self.elmo_data_train,
                                embedding_size = self.experiment_parameters["embedding_size"], 
                                window_size = self.experiment_parameters["window_size"],
                                nb_epoch = self.experiment_parameters["epoch_number"], 
-                               batch_size = self.experiment_parameters["batch_size"], 
-                               verbose = True, 
-                               residual = True,
-                               step = 1
+                               batch_size = self.experiment_parameters["batch_size"]
                               )
         
         self.elmo_model.tokenize()

@@ -28,6 +28,8 @@ from experiments.comparison.BiLSTMExperiment import BiLSTMExperiment
 
 
 SEED = 7
+DEBUG_MODE = False
+
 # Group activity of the same nature under a generic label following a dictionary
 RENAME_ACTIVITY = True
 
@@ -119,8 +121,8 @@ if __name__ == '__main__':
         if "milan" in data:
             print("MILAN DICT!")
             dataset.renameAcivities(dictAct_1)
-        elif "cario" in data:
-            print("CARIO DICT!")
+        elif "cairo" in data:
+            print("CAIRO DICT!")
             dataset.renameAcivities(dictAct_2)
         else:
             print("NO DICT!")
@@ -146,8 +148,8 @@ if __name__ == '__main__':
         elif experiement == "elmo_bi_lstm":
             exp = ELMoBiLSTMExperiment(dataset, config)
 
-        #exp.DEBUG = True
-        #print(exp.DEBUG)
+        exp.DEBUG = DEBUG_MODE
+
         exp.start()
 
     # save word dict

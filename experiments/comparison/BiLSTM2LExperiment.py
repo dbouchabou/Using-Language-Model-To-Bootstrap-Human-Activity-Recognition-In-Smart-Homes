@@ -16,11 +16,11 @@ from sklearn.model_selection import StratifiedKFold
 
 import tensorflow as tf
 from tensorflow.keras.models import *
+from tensorflow.keras.layers import *
 from tensorflow.keras.utils import *
 from tensorflow.keras.callbacks import *
 from tensorflow.keras.activations import *
 from tensorflow.keras.preprocessing.sequence import pad_sequences
-from tensorflow.keras.preprocessing.text import text_to_word_sequence
 
 
 from SmartHomeHARLib.utils import Experiment
@@ -28,10 +28,6 @@ from SmartHomeHARLib.utils import Evaluator
 
 from SmartHomeHARLib.datasets.casas import Encoder
 from SmartHomeHARLib.datasets.casas import Segmentator
-
-from SmartHomeHARLib.embedding import Word2VecEventEmbedder
-
-from SmartHomeHARLib.classifiers.LSTM import *
 
 
 class BiLSTM2LExperiment(Experiment):

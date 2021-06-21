@@ -5,7 +5,7 @@ import os
 import time
 import numpy as np
 
-from progress.bar import *
+from tqdm import tqdm
 
 from tensorflow.keras.preprocessing.text import text_to_word_sequence
 
@@ -48,15 +48,13 @@ class Word2VecExperiment(Experiment):
 
     def prepare_dataset(self):
 
-        bar = IncrementalBar('Prepare Dataset', max = 2)
+        with tqdm(total=2, desc='Prepare Dataset') as pbar:
 
-        self.w2v_dataset_encoder.basic_raw()
-        bar.next()
+            self.w2v_dataset_encoder.basic_raw()
+            pbar.update(1)
 
-        self.prepare_data_for_w2v()
-        bar.next()
-
-        bar.finish()
+            self.prepare_data_for_w2v()
+            pbar.update(1)
 
 
     def start(self):

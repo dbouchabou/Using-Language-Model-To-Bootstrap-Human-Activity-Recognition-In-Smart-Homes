@@ -13,6 +13,7 @@ from sklearn.model_selection import StratifiedKFold
 
 import tensorflow as tf
 from tensorflow.keras.models import *
+from tensorflow.keras.layers import *
 from tensorflow.keras.utils import *
 from tensorflow.keras.callbacks import *
 from tensorflow.keras.activations import *
@@ -37,7 +38,7 @@ class LSTMExperiment(Experiment):
             self.experiment_parameters["batch_size"],
             self.experiment_parameters["patience"],
             self.experiment_parameters["sequence_lenght"],
-            self.experiment_parameters["emb_dim"],
+            0,
             self.experiment_parameters["nb_units"]
             
         )

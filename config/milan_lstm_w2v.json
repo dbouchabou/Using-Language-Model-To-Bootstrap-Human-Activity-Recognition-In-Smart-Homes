@@ -2,7 +2,7 @@
     "name" : "results",
     "encoding" : "basic_raw",
     "segmentation" : "EW",
-    "model_type" : "LSTM",
+    "model_type" : "LSTM_W2V",
     "nb_units" : 64,
     "batch_size" : 64,
     "nb_epochs" : 400,
@@ -10,6 +10,6 @@
     "seed" : 7,
     "nb_splits" : 3,
     "sequence_lenght" : 2000,
-    "pre_train_embedding" : "",
+    "pre_train_embedding" : "pretrain_embedding/Word2Vec/Milan/demo_Dataset_Milan_Encoding_basic_raw_WindowsSize_20_EmbeddingSize_64_NbEpochs_100/w2v_Milan.emb",
     "patience" : 20
 }

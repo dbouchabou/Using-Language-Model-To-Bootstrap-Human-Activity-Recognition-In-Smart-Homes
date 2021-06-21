@@ -14,6 +14,7 @@ from sklearn.model_selection import StratifiedKFold
 
 import tensorflow as tf
 from tensorflow.keras.models import *
+from tensorflow.keras.layers import *
 from tensorflow.keras.utils import *
 from tensorflow.keras.callbacks import *
 from tensorflow.keras.activations import *
@@ -25,9 +26,6 @@ from SmartHomeHARLib.utils import Evaluator
 
 from SmartHomeHARLib.datasets.casas import Encoder
 from SmartHomeHARLib.datasets.casas import Segmentator
-
-from SmartHomeHARLib.classifiers.LSTM import *
-
 
 class LiciottiLSTMExperiment(Experiment):
 
@@ -381,13 +379,18 @@ class LiciottiLSTMExperiment(Experiment):
             self.evaluate(X_test_input, Y_test_input, run_number)
 
 
+    def __save_dict_to_json(self, where_to_save, dict_to_save):
+
+        with open(where_to_save, "w") as json_dict_file:
+            json.dump(dict_to_save, json_dict_file, indent = 4)
+
+
     def save_word_dict(self):
 
         word_dict_name = "wordDict.json"
         word_dict_path = os.path.join(self.experiment_result_path, word_dict_name)
 
-        with open(word_dict_path, "w") as word_dict_file:
-            json.dump(self.classifier_dataset_encoder.eventDict, word_dict_file, indent = 4)
+        self.__save_dict_to_json(word_dict_path, self.classifier_dataset_encoder.eventDict)
 
     
     def save_activity_dict(self):

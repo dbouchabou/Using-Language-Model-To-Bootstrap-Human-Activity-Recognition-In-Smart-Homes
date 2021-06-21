@@ -1,19 +1,10 @@
 #!/usr/bin/env python3
 
-import os
-import io
-import sys
-import time
 import argparse
-import csv
-import pickle
 
-from progress.bar import Bar
 
 import tensorflow as tf
 import numpy as np
-
-from datetime import datetime
 
 from SmartHomeHARLib.datasets.casas import Dataset
 
@@ -21,8 +12,7 @@ from SmartHomeHARLib.datasets.casas import Aruba
 from SmartHomeHARLib.datasets.casas import Milan
 from SmartHomeHARLib.datasets.casas import Cairo
 
-from experiments.embedding_to_train.word2vec.Word2VecExperiment import Word2VecExperiment
-from experiments.embedding_to_train.word2vec.Word2VecBasicRawExperiment import Word2VecBasicRawExperiment
+from experiments.embedding_to_train.elmo.ELMoExperiment import ELMoExperiment
 
 
 SEED = 7
@@ -79,7 +69,7 @@ if __name__ == '__main__':
 
     with strategy.scope():
 
-        exp = ELMoBasicRawExperiment(dataset, ELMo_experiment_parameters)
+        exp = ELMoExperiment(dataset, ELMo_experiment_parameters)
 
         # exp.setDebugMode(True)
         # print(exp.DEBUG)

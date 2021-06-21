@@ -16,6 +16,7 @@ from sklearn.model_selection import StratifiedKFold
 
 import tensorflow as tf
 from tensorflow.keras.models import *
+from tensorflow.keras.layers import *
 from tensorflow.keras.utils import *
 from tensorflow.keras.callbacks import *
 from tensorflow.keras.activations import *

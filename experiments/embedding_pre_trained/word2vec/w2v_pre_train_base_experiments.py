@@ -16,6 +16,7 @@ from sklearn.model_selection import StratifiedKFold
 
 import tensorflow as tf
 from tensorflow.keras.models import *
+from tensorflow.keras.layers import *
 from tensorflow.keras.utils import *
 from tensorflow.keras.callbacks import *
 from tensorflow.keras.activations import *
@@ -30,8 +31,6 @@ from SmartHomeHARLib.datasets.casas import Encoder
 from SmartHomeHARLib.datasets.casas import Segmentator
 
 from SmartHomeHARLib.embedding import Word2VecEventEmbedder
-
-from SmartHomeHARLib.classifiers.LSTM import *
 
 
 class Word2VecPreTrainBaseExperiment(Experiment):
