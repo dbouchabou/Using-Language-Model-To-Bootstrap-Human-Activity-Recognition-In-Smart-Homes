@@ -46,7 +46,7 @@ class ELMoLSTMExperiment(ELMoPreTrainBaseExperiment):
 
         output_layer = Dense(nb_classes, activation='softmax')(lstm_1)
 
-        self.classifier_model = Model(inputs=input_model, outputs=output_layer, name="LSTM_Classifier")
+        self.classifier_model = Model(inputs=input_model, outputs=output_layer, name="ELMo_LSTM_Classifier")
 
         # ceate a picture of the model
         picture_name = self.classifier_model.name + "_" + self.experiment_tag + "_" + str(run_number) + ".png"

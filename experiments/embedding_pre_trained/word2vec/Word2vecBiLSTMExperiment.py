@@ -52,7 +52,7 @@ class Word2vecBiLSTMExperiment(Word2VecPreTrainBaseExperiment):
 
         output_layer = Dense(nb_classes, activation='softmax')(lstm_1)
 
-        self.classifier_model = Model(inputs=feature_1, outputs=output_layer, name="BiLSTM_Classifier")
+        self.classifier_model = Model(inputs=feature_1, outputs=output_layer, name="W2V_BiLSTM_Classifier")
 
         # ceate a picture of the model
         picture_name = self.classifier_model.name + "_" + self.experiment_tag + "_" + str(run_number) + ".png"
