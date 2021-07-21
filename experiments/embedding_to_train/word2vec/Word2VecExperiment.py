@@ -35,11 +35,12 @@ class Word2VecExperiment(Experiment):
 
     def prepare_data_for_w2v(self):
 
-        sentence_tmp = []
-        for row in self.w2v_dataset_encoder.X:
-            sentence_tmp.append(" ".join(row))
+        #sentence_tmp = []
+        #for row in self.w2v_dataset_encoder.X:
+        #    sentence_tmp.append(" ".join(row))
 
-        sentence = " ".join(sentence_tmp)
+        #sentence = " ".join(sentence_tmp)
+        sentence = " ".join(self.w2v_dataset_encoder.X)
 
         tokens = [text_to_word_sequence(sentence, lower = False, filters = '')]
 

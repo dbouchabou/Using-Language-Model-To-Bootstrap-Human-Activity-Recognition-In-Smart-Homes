@@ -142,7 +142,6 @@ class BiLSTM2LExperiment(Experiment):
         nb_classes = len(self.dataset.activitiesList)
         emb_dim = self.experiment_parameters["emb_dim"]
         vocab_size = len(self.classifier_dataset_encoder.eventDict)
-        vocab = list(self.classifier_dataset_encoder.eventDict.keys())
         output_dim = self.experiment_parameters["nb_units"]
 
         if self.DEBUG:

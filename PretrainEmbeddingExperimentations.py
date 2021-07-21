@@ -19,12 +19,15 @@ from experiments.embedding_pre_trained.word2vec.Word2vecBiLSTMExperiment import 
 # ELMo
 from experiments.embedding_pre_trained.elmo.ELMoLSTMExperiment import ELMoLSTMExperiment
 from experiments.embedding_pre_trained.elmo.ELMoBiLSTMExperiment import ELMoBiLSTMExperiment
+from experiments.embedding_pre_trained.elmo.ELMoBiLSTMExperiment_2 import ELMoBiLSTMExperiment_2
+from experiments.embedding_pre_trained.elmo.ELMoBiLSTMExperiment_2_dense import ELMoBiLSTMExperiment_2_dense
 
 # Comparison
 from experiments.comparison.LiciottiLSTMExperiment import LiciottiLSTMExperiment
 from experiments.comparison.LiciottiBiLSTMExperiment import LiciottiBiLSTMExperiment
 from experiments.comparison.LSTMExperiment import LSTMExperiment
 from experiments.comparison.BiLSTMExperiment import BiLSTMExperiment
+from experiments.comparison.BiLSTM2LExperiment import BiLSTM2LExperiment
 
 
 SEED = 7
@@ -147,6 +150,12 @@ if __name__ == '__main__':
             exp = ELMoLSTMExperiment(dataset, config)
         elif experiement == "elmo_bi_lstm":
             exp = ELMoBiLSTMExperiment(dataset, config)
+        elif experiement == "bi_lstm_2L":    
+            exp = BiLSTM2LExperiment(dataset, config)
+        elif experiement == "elmo_bi_lstm_2":
+            exp = ELMoBiLSTMExperiment_2(dataset, config)
+        elif experiement == "elmo_bi_lstm_2_dense":
+            exp = ELMoBiLSTMExperiment_2_dense(dataset, config)
 
         exp.DEBUG = DEBUG_MODE
 

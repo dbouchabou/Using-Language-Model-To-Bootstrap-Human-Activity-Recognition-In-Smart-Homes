@@ -61,7 +61,7 @@ if __name__ == '__main__':
         "encoding" : "basic_raw",
         "model_type" : "Word2Vec",
         "embedding_size" : 64,
-        "window_size" : 20,
+        "window_size" : 60,
         "workers_number" : 32,
         "epoch_number" : 100
     }

@@ -62,7 +62,7 @@ if __name__ == '__main__':
         "encoding" : "basic_raw",
         "model_type" : "ELMo",
         "embedding_size" : 64,
-        "window_size" : 20,
+        "window_size" : 60,
         "epoch_number" : 400,
         "batch_size":512
     }

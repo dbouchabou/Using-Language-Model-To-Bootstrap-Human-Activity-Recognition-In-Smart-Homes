@@ -38,7 +38,7 @@ class ELMoExperiment(Experiment):
         #print(X.shape)
         #print(X)
         
-        X = np.squeeze(X, axis=1)
+        #X = np.squeeze(X, axis=1)
         
         #print(X)
 
