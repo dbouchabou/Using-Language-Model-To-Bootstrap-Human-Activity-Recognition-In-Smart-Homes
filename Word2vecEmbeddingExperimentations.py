@@ -2,41 +2,31 @@
 
 import argparse
 
-import tensorflow as tf
+#import tensorflow as tf
 import numpy as np
 
 from SmartHomeHARLib.datasets.casas import Dataset
 
+# Casas datasets
 from SmartHomeHARLib.datasets.casas import Aruba
 from SmartHomeHARLib.datasets.casas import Milan
 from SmartHomeHARLib.datasets.casas import Cairo
 
+# Ordonez datasets
+from SmartHomeHARLib.datasets.ordonez import HouseA
+from SmartHomeHARLib.datasets.ordonez import HouseB
+
 from experiments.embedding_to_train.word2vec.Word2VecExperiment import Word2VecExperiment
 
-
+DEBUG_MODE = False
 SEED = 7
 
-# fix the random seed for tensorflow
-tf.random.set_seed(SEED)
-# fix the random seed for numpy
+# Fix the random seed for numpy
 np.random.seed(SEED)
 
 if __name__ == '__main__':
 
-    gpus = tf.config.experimental.list_physical_devices('GPU')
-    if gpus:
-        try:
-            # Currently, memory growth needs to be the same across GPUs
-            for gpu in gpus:
-                tf.config.experimental.set_memory_growth(gpu, True)
-
-        except RuntimeError as e:
-            # Memory growth must be set before GPUs have been initialized
-            print(e)
-
-    strategy = tf.distribute.MirroredStrategy()
-
-    # set and parse the arguments list
+    # Set and parse the arguments list
     p = argparse.ArgumentParser(formatter_class=argparse.RawDescriptionHelpFormatter, description='')
     p.add_argument('--d', dest='data', action='store', default='', help='dataset name')
 
@@ -50,8 +40,12 @@ if __name__ == '__main__':
         dataset = Milan()
     elif data == "cairo":
         dataset = Cairo()
+    elif data == "ordonezA":
+        dataset = HouseA()
+    elif data == "ordonezB":
+        dataset = HouseB()
     else:
-        dataset = Dataset(data, "../../datasets/original_datasets/CASAS/{}/data".format(data))
+        print("UNKNOWED DATASET")
 
     print(dataset.name)
 
@@ -61,18 +55,17 @@ if __name__ == '__main__':
         "encoding" : "basic_raw",
         "model_type" : "Word2Vec",
         "embedding_size" : 64,
-        "window_size" : 60,
+        "window_size" : 20,
         "workers_number" : 32,
         "epoch_number" : 100
     }
 
-    with strategy.scope():
+    exp = Word2VecExperiment(dataset, word2vec_experiment_parameters)
 
-        exp = Word2VecExperiment(dataset, word2vec_experiment_parameters)
+    exp.DEBUG = DEBUG_MODE
 
-        # exp.setDebugMode(True)
-        # print(exp.DEBUG)
-        exp.start()
+    exp.start()
 
-    # save experiment config
+    # Save experiment config
     exp.save_config()
+    

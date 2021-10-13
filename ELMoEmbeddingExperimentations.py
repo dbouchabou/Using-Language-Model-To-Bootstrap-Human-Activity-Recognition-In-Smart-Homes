@@ -8,18 +8,23 @@ import numpy as np
 
 from SmartHomeHARLib.datasets.casas import Dataset
 
+# Casas datasets
 from SmartHomeHARLib.datasets.casas import Aruba
 from SmartHomeHARLib.datasets.casas import Milan
 from SmartHomeHARLib.datasets.casas import Cairo
 
+# Ordonez datasets
+from SmartHomeHARLib.datasets.ordonez import HouseA
+from SmartHomeHARLib.datasets.ordonez import HouseB
+
 from experiments.embedding_to_train.elmo.ELMoExperiment import ELMoExperiment
 
-
+DEBUG_MODE = False
 SEED = 7
 
-# fix the random seed for tensorflow
+# Fix the random seed for tensorflow
 tf.random.set_seed(SEED)
-# fix the random seed for numpy
+# Fix the random seed for numpy
 np.random.seed(SEED)
 
 if __name__ == '__main__':
@@ -37,7 +42,7 @@ if __name__ == '__main__':
 
     strategy = tf.distribute.MirroredStrategy()
 
-    # set and parse the arguments list
+    # Set and parse the arguments list
     p = argparse.ArgumentParser(formatter_class=argparse.RawDescriptionHelpFormatter, description='')
     p.add_argument('--d', dest='data', action='store', default='', help='dataset name')
 
@@ -51,12 +56,16 @@ if __name__ == '__main__':
         dataset = Milan()
     elif data == "cairo":
         dataset = Cairo()
+    elif data == "ordonezA":
+        dataset = HouseA()
+    elif data == "ordonezB":
+        dataset = HouseB()
     else:
-        dataset = Dataset(data, "../../datasets/original_datasets/CASAS/{}/data".format(data))
+        print("UNKNOWED DATASET")
 
     print(dataset.name)
 
-
+    # Parameters
     ELMo_experiment_parameters= {
         "name" : "pretrain_embedding",
         "encoding" : "basic_raw",
@@ -71,9 +80,9 @@ if __name__ == '__main__':
 
         exp = ELMoExperiment(dataset, ELMo_experiment_parameters)
 
-        # exp.setDebugMode(True)
-        # print(exp.DEBUG)
+        exp.DEBUG = DEBUG_MODE
+        
         exp.start()
 
-    # save experiment config
+    # Save experiment config
     exp.save_config()

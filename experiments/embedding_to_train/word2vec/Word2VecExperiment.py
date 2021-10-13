@@ -11,6 +11,7 @@ from tensorflow.keras.preprocessing.text import text_to_word_sequence
 
 from SmartHomeHARLib.utils import Experiment
 from SmartHomeHARLib.datasets.casas import Encoder
+from SmartHomeHARLib.datasets.casas import Segmentator
 from SmartHomeHARLib.embedding import Word2VecEventEmbedder
 
 
@@ -29,29 +30,33 @@ class Word2VecExperiment(Experiment):
 
         # Embedding
         self.w2v_dataset_encoder = Encoder(self.dataset)
+        self.w2v_dataset_segmentator = None
         self.w2v_data_train = []
         self.w2v_model = None
 
-
     def prepare_data_for_w2v(self):
 
-        #sentence_tmp = []
-        #for row in self.w2v_dataset_encoder.X:
-        #    sentence_tmp.append(" ".join(row))
 
-        #sentence = " ".join(sentence_tmp)
-        sentence = " ".join(self.w2v_dataset_encoder.X)
+        X = self.w2v_dataset_segmentator.X
 
-        tokens = [text_to_word_sequence(sentence, lower = False, filters = '')]
+        sentences_tokenized = []
 
-        self.w2v_data_train = tokens
+        for activity in X:
+            sentence = " ".join(activity)
+            sentences_tokenized.append(text_to_word_sequence(sentence, lower = False, filters = ''))
 
+        
+        self.w2v_data_train = sentences_tokenized
 
     def prepare_dataset(self):
 
-        with tqdm(total=2, desc='Prepare Dataset') as pbar:
+        with tqdm(total=3, desc='Prepare Dataset') as pbar:
 
             self.w2v_dataset_encoder.basic_raw()
+            pbar.update(1)
+
+            self.w2v_dataset_segmentator = Segmentator(self.w2v_dataset_encoder)
+            self.w2v_dataset_segmentator.explicitWindow()
             pbar.update(1)
 
             self.prepare_data_for_w2v()
@@ -89,6 +94,8 @@ class Word2VecExperiment(Experiment):
         
         print("Training Finish")
 
+        print("Save Model")
         w2v_name = "w2v_{}.emb".format(self.dataset.name)
         w2v_model_path = os.path.join(self.experiment_result_path, w2v_name)
         self.w2v_model.save_model(w2v_model_path)
+        print("Model Saved")

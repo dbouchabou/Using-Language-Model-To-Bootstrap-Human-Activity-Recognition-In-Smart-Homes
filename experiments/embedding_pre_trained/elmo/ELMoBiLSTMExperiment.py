@@ -31,10 +31,7 @@ class ELMoBiLSTMExperiment(ELMoPreTrainBaseExperiment):
         # build the model
 
         # create embedding layer
-
         elmo_embedding_layer = self.elmo_model.get_elmo_embedding_layer(embedding_type = self.experiment_parameters["elmo_output"], trainable = False)
-        #print(elmo_embedding_layer.summary())
-        #input("Press Enter to continue...")
 
         # classifier
         input_model = Input(shape=((nb_timesteps,)))
@@ -125,9 +122,5 @@ class ELMoBiLSTMExperiment(ELMoPreTrainBaseExperiment):
                 print("Val : None")
 
             input("Press Enter to continue...")
-
-        #print("Train {}:".format(np.array(X_train_input).shape))
-        #print(X_train_input[0])
-        #input("Press Enter to continue...")
 
         return X_train_input, Y_train_input, X_val_input, Y_val_input, X_test_input, Y_test_input, nb_features
