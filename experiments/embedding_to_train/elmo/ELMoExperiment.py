@@ -10,6 +10,7 @@ from tqdm import tqdm
 
 from SmartHomeHARLib.utils import Experiment
 from SmartHomeHARLib.datasets.casas import Encoder
+from SmartHomeHARLib.datasets.casas import Segmentator
 from SmartHomeHARLib.embedding import ELMoEventEmbedder
 
 
@@ -28,23 +29,28 @@ class ELMoExperiment(Experiment):
 
         # Embedding
         self.elmo_dataset_encoder = Encoder(self.dataset)
+        self.elmo_dataset_segmentator = None
         self.elmo_data_train = []
         self.elmo_model = None
 
 
     def prepare_data_for_elmo(self):
 
-        X = self.elmo_dataset_encoder.X
-        #print(X.shape)
-        #print(X)
+        X = self.elmo_dataset_segmentator.X
         
-        #X = np.squeeze(X, axis=1)
+        sentences = []
         
-        #print(X)
+        for activity in X:
+            sentences.append(" ".join(activity))
 
-        sentence = " ".join(X)
+        self.elmo_data_train = sentences
 
-        self.elmo_data_train = [sentence]
+        if self.DEBUG:
+            print("")
+            print(len(sentences))
+            print(sentences[0])
+
+            input("Press Enter to continue...")
 
 
     def prepare_dataset(self):
@@ -52,6 +58,10 @@ class ELMoExperiment(Experiment):
         with tqdm(total=2, desc='Prepare Dataset') as pbar:
 
             self.elmo_dataset_encoder.basic_raw()
+            pbar.update(1)
+
+            self.elmo_dataset_segmentator = Segmentator(self.elmo_dataset_encoder)
+            self.elmo_dataset_segmentator.explicitWindow()
             pbar.update(1)
 
             self.prepare_data_for_elmo()
@@ -74,7 +84,7 @@ class ELMoExperiment(Experiment):
         if not os.path.exists(self.experiment_result_path):
             os.makedirs(self.experiment_result_path)
 
-        filename_base = "model_4_basic_raw_{}_{}_{}_no_backward".format(self.dataset.name,
+        filename_base = "model_4_basic_raw_{}_{}_{}_backward".format(self.dataset.name,
                                                                     self.experiment_parameters["window_size"],
                                                                     self.experiment_parameters["embedding_size"]
                                                                     )
@@ -90,7 +100,30 @@ class ELMoExperiment(Experiment):
         
         self.elmo_model.tokenize()
 
+        if self.DEBUG:
+            print("")
+            print(self.elmo_model.vocabulary)
+
+            input("Press Enter to continue...")
+
         self.elmo_model.prepare_4()
+
+        if self.DEBUG:
+            print("")
+            print(self.elmo_model.forward_inputs.shape)
+            print(self.elmo_model.backward_inputs.shape)
+            print(self.elmo_model.forward_outputs.shape)
+            print(self.elmo_model.forward_inputs[0])
+            print(self.elmo_model.backward_inputs[0])
+            print(self.elmo_model.forward_outputs[0])
+
+            print(self.elmo_model.forward_inputs[1])
+            print(self.elmo_model.backward_inputs[1])
+            print(self.elmo_model.forward_outputs[1])
+
+            print(np.sort(np.unique(self.elmo_model.forward_outputs)))
+
+            input("Press Enter to continue...")
 
         self.elmo_model.compile()
         
