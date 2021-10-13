@@ -5,5 +5,4 @@ ELMo_4.png
 test.py
 test_gpu.py
 results/
-pretrain_embedding/
 results_64_20/

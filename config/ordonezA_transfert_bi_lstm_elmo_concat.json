@@ -12,6 +12,7 @@
     "seed" : 7,
     "nb_splits" : 3,
     "sequence_lenght" : 2000,
-    "pre_train_embedding" : "pretrain_embedding/ELMo/Milan/Demo/model_4_basic_raw_Milan_60_64_backward",
-    "patience" : 20
+    "pre_train_embedding" : "pretrain_embedding/ELMo/HOUSE_A/run__2021_10_12_11_31_18_Dataset_HOUSE_A_Encoding_basic_raw_WindowsSize_60_EmbeddingSize_64_NbEpochs_400/model_4_basic_raw_HOUSE_A_60_64_backward",
+    "patience" : 20,
+    "activity_renamed" : false
 }

@@ -1,0 +1,9 @@
+{
+    "name": "pretrain_embedding",
+    "encoding": "basic_raw",
+    "model_type": "ELMo",
+    "embedding_size": 64,
+    "window_size": 60,
+    "epoch_number": 400,
+    "batch_size": 512
+}

@@ -10,6 +10,6 @@
     "seed" : 7,
     "nb_splits" : 3,
     "sequence_lenght" : 2000,
-    "pre_train_embedding" : "pretrain_embedding/Word2Vec/Cairo/demo_Dataset_Cairo_Encoding_basic_raw_WindowsSize_20_EmbeddingSize_64_NbEpochs_100/w2v_Cairo.emb",
+    "pre_train_embedding" : "pretrain_embedding/Word2Vec/Cairo/Demo/w2v_Cairo.emb",
     "patience" : 20
 }

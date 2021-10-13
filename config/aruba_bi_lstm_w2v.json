@@ -10,6 +10,6 @@
     "seed" : 7,
     "nb_splits" : 3,
     "sequence_lenght" : 2000,
-    "pre_train_embedding" : "pretrain_embedding/Word2Vec/Aruba/demo_Dataset_Aruba_Encoding_basic_raw_WindowsSize_20_EmbeddingSize_64_NbEpochs_100/w2v_Aruba.emb",
+    "pre_train_embedding" : "pretrain_embedding/Word2Vec/Aruba/Demo/w2v_Aruba.emb",
     "patience" : 20
 }

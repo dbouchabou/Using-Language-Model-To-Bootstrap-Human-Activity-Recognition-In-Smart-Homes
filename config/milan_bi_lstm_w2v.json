@@ -10,6 +10,6 @@
     "seed" : 7,
     "nb_splits" : 3,
     "sequence_lenght" : 2000,
-    "pre_train_embedding" : "pretrain_embedding/Word2Vec/Milan/demo_Dataset_Milan_Encoding_basic_raw_WindowsSize_20_EmbeddingSize_64_NbEpochs_100/w2v_Milan.emb",
+    "pre_train_embedding" : "pretrain_embedding/Word2Vec/Milan/Demo/w2v_Milan.emb",
     "patience" : 20
 }

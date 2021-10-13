@@ -2,8 +2,8 @@
     "name" : "results",
     "encoding" : "basic_raw",
     "segmentation" : "EW",
-    "model_type" : "Bi_LSTM_ELMO_LAST",
-    "elmo_output" : "last",
+    "model_type" : "Bi_LSTM_ELMO_SUM",
+    "elmo_output" : "sum",
     "emb_dim" : 64,
     "nb_units" : 64,
     "batch_size" : 64,
@@ -12,6 +12,7 @@
     "seed" : 7,
     "nb_splits" : 3,
     "sequence_lenght" : 2000,
-    "pre_train_embedding" : "pretrain_embedding/ELMo/Milan/Demo/model_4_basic_raw_Milan_60_64_backward",
-    "patience" : 20
+    "pre_train_embedding" : "pretrain_embedding/ELMo/HOUSE_B/Demo/model_4_basic_raw_HOUSE_B_60_64_backward",
+    "patience" : 20,
+    "activity_renamed" : false
 }

@@ -32,10 +32,7 @@ class ELMoLSTMExperiment(ELMoPreTrainBaseExperiment):
         # build the model
 
         # create embedding layer
-
         elmo_embedding_layer = self.elmo_model.get_elmo_embedding_layer(embedding_type = self.experiment_parameters["elmo_output"], trainable = False)
-        #print(elmo_embedding_layer.summary())
-        #input("Press Enter to continue...")
 
         # classifier
         input_model = Input(shape=((nb_timesteps,)))
