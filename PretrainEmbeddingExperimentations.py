@@ -24,9 +24,6 @@ from experiments.embedding_pre_trained.word2vec.Word2vecBiLSTMExperiment import 
 # ELMo
 from experiments.embedding_pre_trained.elmo.ELMoLSTMExperiment import ELMoLSTMExperiment
 from experiments.embedding_pre_trained.elmo.ELMoBiLSTMExperiment import ELMoBiLSTMExperiment
-from experiments.embedding_pre_trained.elmo.ELMoBiLSTMExperiment_2 import ELMoBiLSTMExperiment_2
-from experiments.embedding_pre_trained.elmo.ELMoBiLSTMExperiment_3 import ELMoBiLSTMExperiment_3
-from experiments.embedding_pre_trained.elmo.ELMoBiLSTMExperiment_2_dense import ELMoBiLSTMExperiment_2_dense
 
 # Comparison
 from experiments.comparison.LiciottiLSTMExperiment import LiciottiLSTMExperiment

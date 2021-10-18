@@ -2,7 +2,7 @@
     "name" : "results",
     "encoding" : "basic_raw",
     "segmentation" : "EW",
-    "model_type" : "Bi_LSTM_ELMO_CONCAT",
+    "model_type" : "TRANSFER_FROM_HOUSE_A_Bi_LSTM_ELMO_CONCAT",
     "elmo_output" : "concat",
     "emb_dim" : 64,
     "nb_units" : 64,
