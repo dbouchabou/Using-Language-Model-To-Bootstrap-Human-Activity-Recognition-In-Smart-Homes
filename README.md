@@ -1,6 +1,6 @@
-# Using Language Model To Bootstrap Human Activity Recognition In Smart Homes
+# Using Language Model to Bootstrap Human Activity Recognition Ambient Sensors Based in Smart Homes
 
-This repository is the official implementation of [Using Language Model To Bootstrap Human Activity Recognition In Smart Homes](https://arxiv.org/abs/2030.12345). 
+This repository is the official implementation of [Using Language Model to Bootstrap Human Activity Recognition Ambient Sensors Based in Smart Homes](https://doi.org/10.3390/electronics10202498). 
 
 ## Requirements
 
